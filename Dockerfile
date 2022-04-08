@@ -1,16 +1,16 @@
 
-FROM ubuntu:bionic
+FROM debian:stretch
 
-ENV GCSFUSE_REPO gcsfuse-bionic
+ENV GCSFUSE_REPO gcsfuse-stretch
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN useradd -u 1234 notroot && \
     mkdir /backups && mkdir -p /mnt/backup-bucket && \
     chown notroot /backups /mnt/backup-bucket && \
     apt-get update && apt-get install --yes --no-install-recommends \
-    ca-certificates=20210119~18.04.2 \
-    curl=7.58.0-2ubuntu3.16 \
-    gnupg=2.2.4-1ubuntu1.4 \
+    ca-certificates \
+    curl \
+    gnupg \
     mydumper=0.9.1-5 \
   && echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" \
     | tee /etc/apt/sources.list.d/gcsfuse.list \
