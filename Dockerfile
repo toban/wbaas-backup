@@ -19,6 +19,7 @@ RUN useradd -u 1234 notroot && \
   && apt-get install --yes gcsfuse=0.40.0 --no-install-recommends \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
+
 USER notroot
 WORKDIR /app
 COPY src/ /app
